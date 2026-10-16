@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bản đồ sao & Tính cách</title>
+<style>
+:root{--bg:#0b0820;--bg2:#1b1245;--card:rgba(28,22,66,.72);--text:#efeaff;--muted:#a9a2cf;--accent:#a78bfa;--accent2:#f472b6;--line:rgba(167,139,250,.28);--star:#ffd45e;--field:rgba(255,255,255,.06);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
+:root[data-theme="light"]{--bg:#f3efff;--bg2:#e2d8ff;--card:rgba(255,255,255,.85);--text:#1d1b2e;--muted:#6b6785;--accent:#6d4ae0;--accent2:#d6338a;--line:rgba(109,74,224,.25);--star:#d99a00;--field:rgba(109,74,224,.06);color-scheme:light}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6;background:radial-gradient(ellipse at 20% 0,var(--bg2),var(--bg) 60%) fixed}
+@keyframes tw{50%{opacity:.9;transform:scale(1.8)}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+#sky{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+body::before{content:"";position:fixed;inset:-20%;z-index:0;pointer-events:none;background:radial-gradient(circle at 20% 30%,rgba(124,58,237,.38),transparent 40%),radial-gradient(circle at 80% 20%,rgba(236,72,153,.24),transparent 38%),radial-gradient(circle at 60% 85%,rgba(56,189,248,.22),transparent 40%);animation:neb 40s ease-in-out infinite alternate}
+@keyframes neb{to{transform:rotate(8deg) scale(1.15)}}
+:root[data-theme="light"] body::before{opacity:.35}
+.planet{position:fixed;right:-70px;top:22%;width:170px;height:170px;border-radius:50%;z-index:0;pointer-events:none;background:radial-gradient(circle at 30% 30%,#c4b5fd,#6d28d9 55%,#1e1b4b);box-shadow:inset -22px -12px 44px rgba(0,0,0,.6),0 0 60px rgba(167,139,250,.35);animation:fl 12s ease-in-out infinite alternate;opacity:.85}
+:root[data-theme="light"] .planet{opacity:.35}
+@keyframes fl{to{transform:translateY(-34px)}}
+.twk{animation:tw 2.5s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.con svg{max-width:230px;filter:none}
+.big .mini{border:0;padding:0;box-shadow:none;background:none}
+.mini svg{width:72px;height:58px;margin:2px auto 0;filter:none}
+@media (prefers-reduced-motion:reduce){body::before,.planet,.twk{animation:none}}
+main{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:20px 16px 40px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+h1{font-size:2rem;margin:.2em 0;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--star));-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{color:var(--muted);margin:0 0 18px}
+.card{background:var(--card);backdrop-filter:blur(10px);border:1px solid var(--line);border-radius:18px;padding:18px;margin-bottom:16px;box-shadow:0 10px 40px rgba(0,0,0,.25);animation:up .6s both}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-size:.85rem;color:var(--muted);margin-bottom:4px}
+input,select{width:100%;box-sizing:border-box;padding:11px;border-radius:10px;border:1px solid var(--line);background:var(--field);color:var(--text);font-size:1rem}
+select option{color:#222}
+.full{grid-column:1/-1}
+button{width:100%;padding:13px;border:0;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));color:#fff;font-size:1.05rem;font-weight:700;cursor:pointer;margin-top:6px;box-shadow:0 6px 24px rgba(167,139,250,.4);transition:transform .15s}
+button:hover{transform:translateY(-2px)}
+button.ghost{background:var(--field);color:var(--text);border:1px solid var(--line);box-shadow:none;width:auto;margin:0;padding:10px 14px;font-size:.95rem}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.err{color:#ff6b81;margin:8px 0 0;min-height:1em}
+.big{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;text-align:center;margin-bottom:14px}
+.big div{background:var(--field);border-radius:14px;padding:12px 4px;border:1px solid var(--ec,var(--line));box-shadow:0 0 18px color-mix(in srgb,var(--ec,transparent) 35%,transparent)}
+.big b{display:block;font-size:2rem;color:var(--ec,var(--star))}
+.big span{font-size:.8rem;color:var(--muted)}
+h2{margin:0 0 .3em}
+h3{margin:.9em 0 .2em;font-size:1.05rem;color:var(--accent)}
+p{margin:.2em 0}
+svg{width:100%;max-width:400px;display:block;margin:0 auto;filter:drop-shadow(0 0 14px rgba(167,139,250,.35))}
+.note{font-size:.8rem;color:var(--muted)}
+.hide{display:none}
+ul{padding-left:1.1em;margin:.3em 0}li{margin:.3em 0}
+.shape{background:var(--field);border:1px solid var(--line);border-left:4px solid var(--accent2);border-radius:12px;padding:10px 12px;margin:8px 0}
+.chip{display:inline-block;background:var(--field);border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin:2px 4px 2px 0}
+
+#load{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(8,6,24,.78);backdrop-filter:blur(6px);color:#fff}
+#load.hide,#modal.hide{display:none}
+.ring{position:relative;width:110px;height:110px;border:2px dashed var(--accent);border-radius:50%;animation:spin 3s linear infinite;margin-bottom:18px}
+.ring::after{content:"✦";position:absolute;inset:0;display:grid;place-items:center;font-size:2.2rem;color:var(--star);animation:spin 3s linear infinite reverse}
+.ring i{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--accent2);top:-7px;left:50%;box-shadow:0 0 12px var(--accent2)}
+.ring i+i{top:auto;bottom:-7px;background:var(--star);box-shadow:0 0 12px var(--star)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pop{from{opacity:0;transform:scale(.5) translateY(20px)}to{opacity:1;transform:none}}
+@keyframes wheelin{from{transform:rotate(-140deg) scale(.3);opacity:0}}
+#wheel.spin{animation:wheelin 1.4s cubic-bezier(.2,.8,.2,1)}
+#out>*:nth-child(2){animation-delay:.25s}#out>*:nth-child(3){animation-delay:.45s}#out>*:nth-child(4){animation-delay:.65s}#out>*:nth-child(5){animation-delay:.8s}
+.big .sgn{cursor:pointer;animation:pop .7s both;transition:transform .2s}.big .sgn:nth-child(2){animation-delay:.2s}.big .sgn:nth-child(3){animation-delay:.4s}
+.big .sgn:hover{transform:translateY(-5px) scale(1.05)}
+.pk{cursor:pointer}.pk:hover circle,.pk.on circle{stroke:var(--accent2);stroke-width:3}
+.tg{cursor:pointer;user-select:none}.tg::before{content:"▾ ";display:inline-block;transition:transform .3s}.tg.shut::before{transform:rotate(-90deg)}
+.acc{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}.acc.open{grid-template-rows:1fr}.acc>div{overflow:hidden}
+#modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(8,6,24,.7);backdrop-filter:blur(5px);animation:up .3s both}
+.mbox{position:relative;max-width:480px;max-height:85vh;overflow:auto;background:var(--bg2);color:var(--text);border:1px solid var(--line);border-radius:20px;padding:22px;animation:pop .4s both}
+.mbox .x{position:absolute;top:10px;right:10px}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div class="planet"></div>
+<main>
+<header><h1>✨ Bản đồ sao & Tính cách</h1><button class="ghost" id="theme" aria-label="Đổi giao diện sáng/tối">🌓</button></header>
+<p class="sub">Nhập thông tin ngày giờ sinh để tính vị trí Mặt Trời, Mặt Trăng và Cung Mọc, rồi xem phân tích tính cách.</p>
+
+<div class="card">
+<div class="grid">
+<div class="full"><label for="name">Tên (không bắt buộc)</label><input id="name" placeholder="Nguyễn Văn A"></div>
+<div><label for="date">Ngày sinh *</label><input id="date" type="date" required></div>
+<div><label for="time">Giờ sinh *</label><input id="time" type="time" required></div>
+<div class="full"><label for="city">Nơi sinh</label>
+<select id="city">
+<option value="21.03,105.85,7">Hà Nội</option>
+<option value="10.82,106.63,7">TP. Hồ Chí Minh</option>
+<option value="16.05,108.20,7">Đà Nẵng</option>
+<option value="10.03,105.78,7">Cần Thơ</option>
+<option value="20.84,106.69,7">Hải Phòng</option>
+<option value="16.46,107.59,7">Huế</option>
+<option value="custom">Khác (nhập tọa độ)</option>
+</select></div>
+<div class="full hide" id="cust"><div class="grid">
+<div><label for="lat">Vĩ độ (Bắc +)</label><input id="lat" type="number" step="0.01" value="21.03"></div>
+<div><label for="lon">Kinh độ (Đông +)</label><input id="lon" type="number" step="0.01" value="105.85"></div>
+<div class="full"><label for="tz">Múi giờ (UTC+)</label><input id="tz" type="number" step="0.5" value="7"></div>
+</div></div>
+</div>
+<button id="go">Xem bản đồ sao của tôi</button>
+<div class="err" id="err"></div>
+</div>
+
+<div id="out" class="hide">
+<div class="card">
+<h2 id="title" style="margin-top:0"></h2>
+<div class="big" id="big"></div>
+<p class="note" style="text-align:center">Bấm vào từng ô để đọc chi tiết về cung.</p>
+<svg id="wheel" viewBox="0 0 400 400" role="img" aria-label="Bánh xe hoàng đạo"></svg>
+<div id="pinfo" class="shape">👆 Chạm vào một hành tinh trên bánh xe để xem chi tiết.</div>
+<p class="note" style="text-align:center">☉☽☿♀♂♃♄ và ASC (Cung Mọc, đặt bên trái). Vùng tím là hình dạng bản đồ; đường xanh = góc hợp thuận, đường đỏ = góc căng.</p>
+</div>
+<div class="card" id="reading"></div>
+<div class="card" id="more"></div>
+<div class="card" id="bonus"></div>
+<div class="tools"><button class="ghost" id="dl">⬇ Tải ảnh bản đồ</button><button class="ghost" id="cp">📋 Sao chép kết quả</button></div>
+</div>
+
+<p class="note">Lưu ý: chiêm tinh là một hệ thống diễn giải mang tính văn hóa và giải trí, chưa được khoa học kiểm chứng là dự đoán được tính cách hay vận mệnh. Hãy xem đây là gợi ý để tự suy ngẫm. Vị trí các thiên thể được tính theo công thức thiên văn xấp xỉ (sai số khoảng dưới 1°); Cung Mọc phụ thuộc mạnh vào giờ sinh chính xác.</p>
+</main>
+
+<div id="load" class="hide"><div class="ring"><i></i><i></i></div><p id="lm"></p></div>
+<div id="modal" class="hide"><div class="mbox"><button class="ghost x" id="mx" aria-label="Đóng">✕</button><div id="mc"></div></div></div>
+<script>
+const S=[
+["Bạch Dương","♈","Lửa","Nhiệt huyết, dũng cảm, thẳng thắn, thích dẫn đầu và hành động nhanh; đôi khi nóng vội.","Cảm xúc bùng nhanh và qua nhanh; cần được tự do và hành động để thấy an ổn.","Tỏa năng lượng, quyết đoán, trực diện; người khác thấy bạn mạnh mẽ và chủ động."],
+["Kim Ngưu","♉","Đất","Kiên định, thực tế, đáng tin cậy, yêu sự ổn định và cái đẹp; có thể bướng bỉnh.","Cần cảm giác an toàn, thích sự quen thuộc, thoải mái và bình yên.","Điềm đạm, chậm rãi, ấm áp; tạo cảm giác vững chãi."],
+["Song Tử","♊","Khí","Tò mò, thích giao tiếp, linh hoạt, nhanh trí; dễ chán và hay thay đổi.","Cảm xúc được xử lý bằng cách nói chuyện, viết và tìm hiểu; cần sự kích thích trí óc.","Dí dỏm, hoạt ngôn, trẻ trung; dễ bắt chuyện."],
+["Cự Giải","♋","Nước","Nhạy cảm, quan tâm người thân, giàu trực giác và biết chăm sóc; dễ tổn thương.","Gắn bó sâu với gia đình, ký ức; cần tổ ấm và sự thấu hiểu.","Dịu dàng, kín đáo lúc đầu, gần gũi như người nhà."],
+["Sư Tử","♌","Lửa","Tự tin, hào phóng, sáng tạo, có sức hút lãnh đạo; cần được ghi nhận.","Cần được yêu thương, trân trọng; cảm xúc ấm áp và rộng lượng.","Nổi bật, có khí chất, dễ thu hút sự chú ý."],
+["Xử Nữ","♍","Đất","Tỉ mỉ, phân tích, chăm chỉ, thích giúp ích; hay cầu toàn và lo xa.","Dùng sự ngăn nắp và hữu ích để ổn định cảm xúc; dễ tự phê bình.","Gọn gàng, khiêm tốn, chu đáo; trông đáng tin."],
+["Thiên Bình","♎","Khí","Hòa nhã, công bằng, yêu cái đẹp và các mối quan hệ; hay do dự.","Cần sự hài hòa và bạn đồng hành; ngại xung đột.","Duyên dáng, lịch thiệp, dễ mến."],
+["Bọ Cạp","♏","Nước","Mãnh liệt, sâu sắc, quyết tâm, trực giác sắc bén; kín đáo và có thể chiếm hữu.","Cảm xúc sâu và mạnh, khó mở lòng nhưng rất trung thành.","Bí ẩn, ánh nhìn sắc, tạo ấn tượng mạnh."],
+["Nhân Mã","♐","Lửa","Lạc quan, yêu tự do, thích khám phá và triết lý; đôi khi thiếu kiên nhẫn.","Cần không gian, phiêu lưu và ý nghĩa; hồi phục nhanh nhờ hy vọng.","Cởi mở, vui vẻ, thẳng tính, thích di chuyển."],
+["Ma Kết","♑","Đất","Kỷ luật, có trách nhiệm, tham vọng và kiên trì; có thể quá nghiêm khắc với bản thân.","Giữ cảm xúc kín, thể hiện qua hành động và sự đáng tin cậy.","Chững chạc, nghiêm túc, đáng nể."],
+["Bảo Bình","♒","Khí","Độc lập, sáng tạo, tư duy khác biệt, quan tâm cộng đồng; có thể xa cách.","Cần tự do và sự cá tính; xử lý cảm xúc bằng lý trí.","Khác biệt, thân thiện nhưng giữ khoảng cách nhất định."],
+["Song Ngư","♓","Nước","Giàu tưởng tượng, đồng cảm, nghệ sĩ, vị tha; dễ mơ mộng và né tránh thực tế.","Thấm cảm xúc của người khác, cần thời gian riêng để hồi phục.","Mơ màng, dịu dàng, ánh mắt sâu."]];
+const EL={"Lửa":"Bạn thiên về hành động, nhiệt huyết và truyền cảm hứng.","Đất":"Bạn thiên về thực tế, kiên trì và xây dựng bền vững.","Khí":"Bạn thiên về tư duy, giao tiếp và kết nối ý tưởng.","Nước":"Bạn thiên về cảm xúc, trực giác và sự thấu cảm."};
+const $=id=>document.getElementById(id), rad=Math.PI/180, nm=x=>((x%360)+360)%360;
+$("city").onchange=()=>{const v=$("city").value;$("cust").classList.toggle("hide",v!=="custom");if(v!=="custom"){const[a,b,c]=v.split(",");$("lat").value=a;$("lon").value=b;$("tz").value=c}};
+$("city").onchange();
+
+const EK={mer:[.38709927,.00000037,.20563593,.00001906,7.00497902,-.00594749,252.2503235,149472.67411175,77.45779628,.16047689,48.33076593,-.12534081],ven:[.72333566,.0000039,.00677672,-.00004107,3.39467605,-.0007889,181.9790995,58517.81538729,131.60246718,.00268329,76.67984255,-.27769418],ear:[1.00000261,.00000562,.01671123,-.00004392,-.00001531,-.01294668,100.46457166,35999.37244981,102.93768193,.32327364,0,0],mar:[1.52371034,.00001847,.0933941,.00007882,1.84969142,-.00813131,-4.55343205,19140.30268499,-23.94362959,.44441088,49.55953891,-.29257343],jup:[5.202887,-.00011607,.04838624,-.00013253,1.30439695,-.00183714,34.39644051,3034.74612775,14.72847983,.21252668,100.47390909,.20469106],sat:[9.53667594,-.0012506,.05386179,-.00050991,2.48599187,.00193609,49.95424423,1222.49362201,92.59887831,-.41897216,113.66242448,-.28867794]};
+function hel(k,T){const p=EK[k],a=p[0]+p[1]*T,e=p[2]+p[3]*T,I=(p[4]+p[5]*T)*rad,L=p[6]+p[7]*T,pi=p[8]+p[9]*T,O=p[10]+p[11]*T;let M=nm(L-pi);if(M>180)M-=360;M*=rad;let E=M;for(let i=0;i<30;i++)E=M+e*Math.sin(E);const xp=a*(Math.cos(E)-e),yp=a*Math.sqrt(1-e*e)*Math.sin(E),w=(pi-O)*rad,o=O*rad,cw=Math.cos(w),sw=Math.sin(w),co=Math.cos(o),so=Math.sin(o),ci=Math.cos(I);return[(cw*co-sw*so*ci)*xp+(-sw*co-cw*so*ci)*yp,(cw*so+sw*co*ci)*xp+(-sw*so+cw*co*ci)*yp]}
+function planets(T){const e=hel("ear",T),o={};["mer","ven","mar","jup","sat"].forEach(k=>{const h=hel(k,T);o[k]=nm(Math.atan2(h[1]-e[1],h[0]-e[0])/rad+1.396971*T)});return o}
+function calc(y,mo,d,h,mi,lat,lon,tz){
+  const ut=h+mi/60-tz;
+  let Y=y,M=mo; if(M<=2){Y--;M+=12}
+  const A=Math.floor(Y/100),B=2-A+Math.floor(A/4);
+  const jd=Math.floor(365.25*(Y+4716))+Math.floor(30.6001*(M+1))+d+B-1524.5+ut/24;
+  const dd=jd-2451545, T=dd/36525;
+  const Ms=357.52911+35999.05029*T, L0=280.46646+36000.76983*T;
+  const C=(1.914602-.004817*T)*Math.sin(Ms*rad)+.019993*Math.sin(2*Ms*rad)+.000289*Math.sin(3*Ms*rad);
+  const sun=nm(L0+C);
+  const Lp=218.3164477+481267.88123421*T, D=297.8501921+445267.1114034*T,
+        M1=357.5291092+35999.0502909*T, Mp=134.9633964+477198.8675055*T, F=93.2720950+483202.0175233*T;
+  const s=x=>Math.sin(x*rad);
+  const moon=nm(Lp+6.288774*s(Mp)+1.274027*s(2*D-Mp)+.658314*s(2*D)+.213618*s(2*Mp)-.185116*s(M1)-.114332*s(2*F)+.058793*s(2*D-2*Mp)+.057066*s(2*D-M1-Mp)+.053322*s(2*D+Mp)+.045758*s(2*D-M1));
+  const ramc=nm(280.46061837+360.98564736629*dd+lon)*rad, eps=(23.4393-.013*T)*rad;
+  const asc=nm(Math.atan2(Math.cos(ramc),-(Math.sin(ramc)*Math.cos(eps)+Math.tan(lat*rad)*Math.sin(eps)))/rad);
+  return{sun,moon,asc,T};
+}
+const fmt=l=>{const i=Math.floor(l/30),dg=l-i*30;return `${Math.floor(dg)}°${String(Math.round((dg%1)*60)%60).padStart(2,"0")}′ ${S[i][0]}`};
+
+$("go").onclick=()=>{
+  const e=$("err");e.textContent="";
+  const dv=$("date").value,tv=$("time").value;
+  if(!dv||!tv){e.textContent="Vui lòng nhập đầy đủ ngày sinh và giờ sinh.";return}
+  const[y,mo,d]=dv.split("-").map(Number),[h,mi]=tv.split(":").map(Number);
+  const lat=parseFloat($("lat").value),lon=parseFloat($("lon").value),tz=parseFloat($("tz").value);
+  if([lat,lon,tz].some(isNaN)||Math.abs(lat)>66){e.textContent="Tọa độ không hợp lệ (vĩ độ phải trong khoảng ±66°).";return}
+  if(y<1900||y>2100){e.textContent="Năm sinh nên nằm trong khoảng 1900–2100.";return}
+  const r=calc(y,mo,d,h,mi,lat,lon,tz);
+  const si=Math.floor(r.sun/30),mi2=Math.floor(r.moon/30),ai=Math.floor(r.asc/30);
+  const name=$("name").value.trim();
+  $("title").textContent=name?`Bản đồ sao của ${name}`:"Bản đồ sao của bạn";
+  $("big").innerHTML=[["☉ Mặt Trời",si],["☽ Mặt Trăng",mi2],["ASC Cung Mọc",ai]].map(([t,i])=>`<div class="sgn" data-i="${i}" tabindex="0" role="button" style="--ec:${ELC[S[i][2]]}"><b>${S[i][1]}</b><div class="mini">${conSVG(i)}</div>${S[i][0]}<br><span>${t}</span></div>`).join("");
+  const cnt={};[si,mi2,ai].forEach(i=>cnt[S[i][2]]=(cnt[S[i][2]]||0)+1);
+  const dom=Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0][0];
+  $("reading").innerHTML=`
+  <h3>☉ Bản chất cốt lõi – ${fmt(r.sun)}</h3><p>${S[si][3]}</p>
+  <h3>☽ Thế giới nội tâm – ${fmt(r.moon)}</h3><p>${S[mi2][4]}</p>
+  <h3>↑ Ấn tượng bên ngoài – ${fmt(r.asc)}</h3><p>${S[ai][5]}</p>
+  <h3>Nguyên tố nổi bật: ${dom}</h3><p>${EL[dom]}</p>
+  <h3>Tổng hợp</h3><p>Bên trong bạn là ${S[si][0]} (${S[si][2]}), cảm xúc theo kiểu ${S[mi2][0]}, và người khác thường thấy bạn qua hình ảnh ${S[ai][0]}. Sự khác nhau giữa ba lớp này giải thích vì sao đôi khi bạn thấy mình "nhiều mặt" – đó là bình thường.</p>`;
+  extra(r);drawWheel(r);bonus(r);
+  $("out").classList.remove("hide");$("out").scrollIntoView({behavior:"smooth"});
+};
+
+function drawWheel(r){
+  const cx=200,cy=200,R=185,ri=130,rs=158;
+  const pt=(l,rr)=>{const t=(180+l-r.asc)*rad;return[cx+rr*Math.cos(t),cy-rr*Math.sin(t)]};
+  let g=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="var(--line)" stroke-width="2"/><circle cx="${cx}" cy="${cy}" r="${ri}" fill="none" stroke="var(--line)"/>`;
+  for(let i=0;i<12;i++){
+    const[x1,y1]=pt(i*30,ri),[x2,y2]=pt(i*30,R),[tx,ty]=pt(i*30+15,rs);
+    g+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="var(--line)"/><text x="${tx}" y="${ty}" text-anchor="middle" dominant-baseline="central" font-size="20" fill="var(--muted)">${S[i][1]}</text>`;
+  }
+  g+=`<line x1="${cx-ri}" y1="${cy}" x2="${cx+ri}" y2="${cy}" stroke="var(--line)" stroke-dasharray="3 4"/>`;
+  [[r.asc,"ASC","var(--text)"]].forEach(([l,sym,c])=>{
+    const[x,y]=pt(l,ri-24),[a,b]=pt(l,ri);
+    g+=`<line x1="${x}" y1="${y}" x2="${a}" y2="${b}" stroke="${c}"/><circle cx="${x}" cy="${y}" r="15" fill="var(--card)" stroke="${c}" stroke-width="2"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="${sym==="ASC"?9:16}" font-weight="700" fill="${c}">${sym}</text>`;
+  });
+  const Q=B.slice().sort((a,b)=>a.l-b.l),pl=[];
+  Q.forEach(b=>{let n=0;pl.forEach(p=>{if(Math.abs(p.l-b.l)<12)n++});b.rr=ri-24-(n%2)*28;pl.push(b)});
+  g+=`<polygon points="${Q.map(b=>pt(b.l,72).join(",")).join(" ")}" fill="var(--accent)" fill-opacity=".13" stroke="var(--accent)" stroke-dasharray="4 3"/>`;
+  aspects(B).forEach(a=>{const[x1,y1]=pt(a.a.l,72),[x2,y2]=pt(a.b.l,72);g+=`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${a.c}" stroke-width="1.5" opacity=".8"/>`});
+  B.forEach(b=>{const[x,y]=pt(b.l,b.rr),[p,q]=pt(b.l,ri);g+=`<g class="pk" data-k="${B.indexOf(b)}"><line x1="${x}" y1="${y}" x2="${p}" y2="${q}" stroke="var(--muted)"/><circle cx="${x}" cy="${y}" r="12" fill="var(--card)" stroke="var(--accent)" stroke-width="1.5"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="central" font-size="14" fill="${b.s==="☉"?"var(--star)":"var(--text)"}">${b.s}</text></g>`});
+  $("wheel").innerHTML=g;
+}
+const AT=[[0,"kết hợp",8,"hai mặt này hòa làm một, tác động rất mạnh lên nhau","var(--accent)"],[60,"lục hợp",4,"mở ra cơ hội nếu bạn chủ động tận dụng","#2e9e6a"],[90,"vuông góc",6,"tạo căng thẳng nhưng cũng là động lực rèn luyện","#d34"],[120,"tam hợp",6,"hai mặt này hỗ trợ nhau thuận lợi","#2e9e6a"],[180,"đối xung",8,"có sự giằng co, cần học cách cân bằng","#d34"]];
+function aspects(B){const o=[];for(let i=0;i<B.length;i++)for(let j=i+1;j<B.length;j++){let d=Math.abs(B[i].l-B[j].l);if(d>180)d=360-d;AT.forEach(t=>{const orb=Math.abs(d-t[0]);if(orb<=t[2])o.push({a:B[i],b:B[j],t:t[1],m:t[3],c:t[4],orb})})}return o.sort((x,y)=>x.orb-y.orb)}
+const PE={"Sao Thủy":["Nghĩ nhanh, nói thẳng, quyết định theo trực giác.","Tư duy thực tế, từng bước, thích dữ kiện cụ thể.","Linh hoạt, hoạt ngôn, giỏi kết nối ý tưởng.","Tiếp nhận bằng cảm nhận và trí nhớ cảm xúc."],"Sao Kim":["Yêu nồng nhiệt, thích chinh phục và sự mới mẻ.","Yêu bền, trọng ổn định, thể hiện qua hành động chăm sóc.","Cần trò chuyện, đồng điệu trí tuệ và tự do.","Yêu sâu, nhạy cảm, cần gắn kết tình cảm trọn vẹn."],"Sao Hỏa":["Hành động nhanh, dám làm, cạnh tranh mạnh.","Làm chậm mà chắc, bền bỉ, hiệu quả.","Chiến đấu bằng lời nói và chiến lược, hay đổi hướng.","Hành động theo cảm xúc, dễ giận ngầm."],"Sao Mộc":["Phát triển nhờ tự tin và tầm nhìn lớn.","May mắn đến từ làm việc thực tế và tích lũy.","Mở rộng qua học hỏi, kết nối, ý tưởng.","Phát triển nhờ lòng trắc ẩn, trực giác, niềm tin."],"Sao Thổ":["Bài học về kiên nhẫn và kiềm chế cái tôi.","Bài học về trách nhiệm, tài chính, cam kết.","Bài học về tự tin trong tư duy và giao tiếp.","Bài học về mở lòng và đối diện nỗi sợ cảm xúc."]};
+const HS=["bản thân & ngoại hình","tiền bạc & giá trị","giao tiếp & học tập","gia đình & nơi chốn","sáng tạo & tình yêu","công việc & sức khỏe","hôn nhân & đối tác","chuyển hóa & chiều sâu","niềm tin & hành trình xa","sự nghiệp & danh tiếng","bạn bè & lý tưởng","tiềm thức & nghỉ ngơi"];
+const SH={bundle:["Bó chặt (Bundle)","Mọi thiên thể dồn vào chưa đầy 1/3 vòng tròn. Bạn tập trung, chuyên sâu, có thế mạnh rất rõ nhưng dễ thiếu góc nhìn đa chiều. Hãy chủ động tìm trải nghiệm và những người khác biệt để cân bằng."],bowl:["Cái bát (Bowl)","Các thiên thể chiếm nửa vòng tròn. Bạn có xu hướng tập trung vào một nửa của cuộc sống và thấy thiếu mảnh còn lại, nhờ đó có động lực tìm kiếm và hoàn thiện mình."],bucket:["Cái xô (Bucket)","Một nhóm thiên thể tập trung và một thiên thể đơn độc làm 'tay cầm'. Tay cầm là nơi bạn dồn năng lượng ra bên ngoài, thường là tài năng nổi bật hoặc trọng tâm cuộc đời, nên bạn có mục tiêu khá rõ ràng."],loco:["Đầu tàu (Locomotive)","Thiên thể trải khoảng 2/3 vòng tròn, còn một khoảng trống 1/3. Bạn có động lực nội tại, chăm chỉ và bền bỉ. Khoảng trống thôi thúc bạn đi tìm điều còn thiếu, đôi khi gây căng thẳng."],seesaw:["Bập bênh (Seesaw)","Hai nhóm thiên thể đối diện nhau. Bạn thấy rõ hai phía của vấn đề và giỏi cân nhắc, nhưng hay giằng co giữa hai lựa chọn hoặc hai vai trò trong đời."],splash:["Rải đều (Splash)","Thiên thể trải khắp vòng tròn. Bạn đa tài, nhiều mối quan tâm và thích nghi tốt, nhưng dễ phân tán nên cần chọn trọng tâm."],splay:["Bất quy tắc (Splay)","Thiên thể tạo nhiều cụm không đều. Bạn cá tính mạnh, thích đi con đường riêng và khó chịu với khuôn mẫu."]};
+const EE={"Lửa":["Nhiệt huyết, dám khởi đầu, truyền cảm hứng cho người khác.","Nóng vội, dễ kiệt sức, thiếu kiên nhẫn.","Dừng lại lập kế hoạch và lắng nghe trước khi hành động."],"Đất":["Thực tế, kiên trì, đáng tin cậy, biến ý tưởng thành kết quả.","Cứng nhắc, ngại thay đổi, quá coi trọng vật chất.","Thử điều mới nhỏ mỗi tuần và dành thời gian cho cảm xúc."],"Khí":["Thông minh, giao tiếp tốt, nhìn được nhiều góc độ.","Hay nghĩ nhiều hơn làm, xa cách cảm xúc.","Viết ra suy nghĩ, chọn một việc và làm đến cùng."],"Nước":["Đồng cảm, trực giác tốt, gắn bó sâu sắc.","Dễ tổn thương, ôm cảm xúc người khác, hay né tránh.","Đặt ranh giới rõ ràng và dành thời gian nghỉ cho riêng mình."]};
+const MD=["Khởi xướng: bạn thích mở đầu và đặt mục tiêu; cần học cách duy trì đến cùng.","Cố định: bạn bền bỉ và trung thành; cần học cách thích nghi với thay đổi.","Linh hoạt: bạn dễ thích nghi; cần học cách giữ cam kết và ranh giới."];
+function extra(r){
+  const P=planets(r.T);
+  const B=[["Mặt Trời","☉",r.sun,"bản ngã"],["Mặt Trăng","☽",r.moon,"cảm xúc"],["Sao Thủy","☿",P.mer,"tư duy"],["Sao Kim","♀",P.ven,"tình cảm"],["Sao Hỏa","♂",P.mar,"hành động"],["Sao Mộc","♃",P.jup,"phát triển"],["Sao Thổ","♄",P.sat,"kỷ luật"]].map(([n,s,l,kw])=>({n,s,l,kw,i:Math.floor(l/30),h:Math.floor(nm(l-r.asc)/30)+1}));
+  window.B=B;
+  const ls=B.map(b=>b.l).sort((a,b)=>a-b),gp=ls.map((l,i)=>nm(ls[(i+1)%7]-l)),G=Math.max(...gp);
+  const bucket=gp.some((g,i)=>g>=60&&gp[(i+6)%7]>=60&&g+gp[(i+6)%7]>=180);
+  const big=gp.filter(g=>g>=55).length;
+  const k=G>=240?"bundle":bucket?"bucket":G>=180?"bowl":G>=120?"loco":big==2?"seesaw":G<=70?"splash":"splay";
+  const up=B.filter(b=>b.h>=7).length,east=B.filter(b=>[10,11,12,1,2,3].includes(b.h)).length;
+  const all=B.map(b=>b.i).concat(Math.floor(r.asc/30));
+  const ec={},mc=[0,0,0];all.forEach(i=>{ec[S[i][2]]=(ec[S[i][2]]||0)+1;mc[i%3]++});
+  const dom=Object.entries(ec).sort((a,b)=>b[1]-a[1])[0][0],lack=["Lửa","Đất","Khí","Nước"].filter(x=>!ec[x]);
+  const dm=mc.indexOf(Math.max(...mc));
+  const asp=aspects(B).slice(0,7);
+  $("more").innerHTML=`
+  <h2 style="margin-top:0">Phân tích mở rộng</h2><p class="note">Bấm vào từng tiêu đề để mở hoặc đóng nội dung.</p>
+  <h3>Hình dạng bản đồ sao: ${SH[k][0]}</h3>
+  <div class="shape">${SH[k][1]}</div>
+  <p class="note">Khoảng trống lớn nhất giữa các thiên thể là ${Math.round(G)}°. Dạng này được xác định từ 7 thiên thể nhìn thấy bằng mắt thường (Mặt Trời đến Sao Thổ), nên là bản rút gọn của cách phân loại chiêm tinh truyền thống dùng 10 thiên thể.</p>
+  <h3>Phân bố trên bản đồ</h3>
+  <ul><li>${up>=5?`${up}/7 thiên thể ở nửa trên (nhà 7–12): bạn hướng ra xã hội, dễ gắn với công việc và mối quan hệ bên ngoài.`:up<=2?`Chỉ ${up}/7 thiên thể ở nửa trên (phần lớn ở nhà 1–6): bạn thiên về đời sống riêng tư, nội tâm và tự phát triển.`:`Thiên thể chia khá đều giữa nửa trên và nửa dưới: bạn cân bằng giữa đời sống công khai và riêng tư.`}</li>
+  <li>${east>=5?`${east}/7 thiên thể ở nửa Đông: bạn chủ động, tự quyết và tự mở đường.`:east<=2?`Chỉ ${east}/7 thiên thể ở nửa Đông: bạn thiên về hợp tác, thích nghi và phản hồi với hoàn cảnh hay người khác.`:`Thiên thể chia khá đều hai nửa Đông–Tây: bạn cân bằng giữa tự chủ và hợp tác.`}</li></ul>
+  <h3>Cân bằng nguyên tố & kiểu năng lượng</h3>
+  <p>Số thiên thể theo nguyên tố (gồm cả Cung Mọc): ${Object.entries(ec).map(([a,b])=>a+" "+b).join(", ")}.</p>
+  <ul><li><b>Điểm mạnh (${dom}):</b> ${EE[dom][0]}</li><li><b>Điểm cần lưu ý:</b> ${EE[dom][1]}</li><li><b>Gợi ý:</b> ${EE[dom][2]}</li>${lack.length?`<li><b>Thiếu nguyên tố ${lack.join(", ")}:</b> bạn có thể cần chủ động rèn luyện. ${lack.map(x=>EL[x]).join(" ")}</li>`:""}<li><b>Kiểu năng lượng trội –</b> ${MD[dm]}</li></ul>
+  <h3>Từng hành tinh trong bản đồ</h3>
+  <ul>${B.map(b=>`<li><b>${b.s} ${b.n}</b> ở ${S[b.i][0]}, nhà ${b.h} (${HS[b.h-1]}). ${PE[b.n]?PE[b.n][b.i%4]:`Phần ${b.kw} của bạn thể hiện rõ nhất trong lĩnh vực ${HS[b.h-1]}.`}</li>`).join("")}</ul>
+  <p class="note">Nhà được tính theo hệ nhà bằng nhau từ Cung Mọc.</p>
+  <h3>Các góc hợp nổi bật</h3>
+  ${asp.length?`<ul>${asp.map(a=>`<li>${a.a.n} (${a.a.kw}) ${a.t} ${a.b.n} (${a.b.kw}): ${a.m} (lệch ${a.orb.toFixed(1)}°).</li>`).join("")}</ul>`:"<p>Không có góc hợp nào đáng kể.</p>"}
+  <h3>Lời khuyên tổng hợp</h3>
+  <p>Hình dạng ${SH[k][0]} cho thấy cách bạn phân bổ năng lượng, nguyên tố ${dom} cho thấy bản năng phản ứng của bạn, còn các góc hợp cho thấy nơi bạn dễ hài hòa hoặc giằng co. Hãy dùng thế mạnh: ${EE[dom][0].toLowerCase()} Và nhớ rằng: ${EE[dom][2].toLowerCase()}</p>`;
+}
+
+/* ---------- Tính năng bổ sung ---------- */
+const ELC={"Lửa":"#ff7a45","Đất":"#5ec27a","Khí":"#4fc3f7","Nước":"#7c8cff"};
+const LK=[["Đỏ","9"],["Xanh lá","6"],["Vàng","5"],["Bạc","2"],["Vàng kim","1"],["Nâu","6"],["Hồng","7"],["Đỏ thẫm","8"],["Tím","3"],["Xám","8"],["Xanh dương","4"],["Xanh biển","7"]];
+const JOB={"Lửa":"lãnh đạo, kinh doanh, thể thao, khởi nghiệp","Đất":"tài chính, kỹ thuật, quản lý, thủ công","Khí":"truyền thông, giáo dục, công nghệ, viết lách","Nước":"y tế, tư vấn, nghệ thuật, chăm sóc"};
+function bonus(r){
+  const si=Math.floor(r.sun/30),el=S[si][2],ch=n=>S[(si+n+12)%12],chip=n=>`<span class="chip">${ch(n)[1]} ${ch(n)[0]}</span>`;
+  window.SUMMARY=`${$("title").textContent}\n☉ ${fmt(r.sun)}\n☽ ${fmt(r.moon)}\nASC ${fmt(r.asc)}\n(Bản đồ sao & Tính cách)`;
+  $("bonus").innerHTML=`<h2>Gợi ý thêm</h2>
+  <h3>Chòm sao của bạn: ${S[si][0]}</h3><div class="con">${conSVG(si)}</div><p class="note">Hình mô phỏng đơn giản, mang tính tượng trưng.</p>
+  <h3>Màu & con số may mắn</h3><p>Màu: <b>${LK[si][0]}</b> · Số: <b>${LK[si][1]}</b></p>
+  <h3>Cung hợp với bạn</h3><p>Rất hợp: ${chip(4)}${chip(-4)} Hỗ trợ: ${chip(2)}${chip(-2)} Bổ sung/thử thách: ${chip(6)}</p>
+  <h3>Lĩnh vực phù hợp (nguyên tố ${el})</h3><p>${JOB[el]}.</p>`;
+}
+$("cp").onclick=async()=>{if(!window.SUMMARY){alert("Hãy xem bản đồ sao trước.");return}try{await navigator.clipboard.writeText(SUMMARY);$("cp").textContent="✅ Đã sao chép"}catch(e){prompt("Sao chép nội dung:",SUMMARY)}};
+$("dl").onclick=()=>{
+  const sv=$("wheel");if(!sv.innerHTML){alert("Hãy xem bản đồ sao trước.");return}
+  const cs=getComputedStyle(document.documentElement);
+  let x=new XMLSerializer().serializeToString(sv).replace(/var\((--[\w-]+)\)/g,(m,v)=>cs.getPropertyValue(v).trim()||"#888");
+  x=x.replace(/(<svg[^>]*>)/,'$1<rect width="400" height="400" fill="'+(cs.getPropertyValue("--bg2").trim()||"#1b1245")+'"/>');
+  const img=new Image();img.onload=()=>{const c=document.createElement("canvas");c.width=c.height=1000;c.getContext("2d").drawImage(img,0,0,1000,1000);const a=document.createElement("a");a.download="ban-do-sao.png";a.href=c.toDataURL("image/png");a.click()};
+  img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(x);
+};
+$("theme").onclick=()=>{const d=document.documentElement;d.dataset.theme=d.dataset.theme==="light"?"dark":"light"};
+if(matchMedia("(prefers-color-scheme: light)").matches)document.documentElement.dataset.theme="light";
+
+/* ---------- Chòm sao & bầu trời động ---------- */
+const Z=[[[[5,70],[40,50],[70,40],[90,55]]],[[[5,30],[40,50],[75,60],[95,80]],[[40,50],[60,25],[90,10]],[[40,50],[30,15]]],[[[20,10],[25,50],[35,90]],[[70,10],[65,50],[60,90]],[[25,50],[65,50]]],[[[50,50],[30,20]],[[50,50],[70,25]],[[50,50],[45,85]]],[[[15,70],[30,50],[28,25],[45,10],[60,22]],[[30,50],[65,60],[90,55]]],[[[10,20],[35,40],[55,35],[75,55],[90,85]],[[35,40],[40,75]],[[55,35],[60,10]]],[[[50,15],[15,55],[50,85],[85,55],[50,15]]],[[[10,15],[25,30],[40,38],[55,50],[65,70],[80,85],[92,70],[85,55]]],[[[20,80],[35,50],[60,45],[80,20]],[[35,50],[50,75],[70,80]],[[60,45],[70,65]]],[[[10,25],[45,15],[90,30],[70,70],[40,80],[10,25]]],[[[10,40],[35,25],[60,45],[85,30]],[[60,45],[70,75],[90,85]]],[[[5,30],[25,50],[45,60],[70,55],[95,35]],[[5,30],[15,10],[30,15],[5,30]],[[95,35],[90,60]]]];
+const ORION=[[[30,10],[38,48],[32,90]],[[70,12],[62,44],[72,88]],[[38,48],[50,46],[62,44]],[[30,10],[70,12]]],DIPPER=[[[0,40],[18,48],[34,52],[48,58],[50,80],[76,84],[80,56],[48,58]]],CASS=[[[0,60],[22,20],[45,50],[68,15],[100,40]]];
+function conSVG(i){const L=Z[i];return `<svg viewBox="0 0 100 100" aria-hidden="true">${L.map(l=>`<polyline points="${l.map(p=>p.join(",")).join(" ")}" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".8"/>`).join("")}${L.flat().map((p,j)=>`<circle class="twk" cx="${p[0]}" cy="${p[1]}" r="2.8" fill="var(--star)" style="animation-delay:${j*.3}s"/>`).join("")}</svg>`}
+const cv=$("sky"),c2=cv.getContext("2d"),RM=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const BGC=[[ORION,.05,.1,150,180],[DIPPER,.68,.66,210,120],[CASS,.5,.06,170,70],[Z[7],.04,.68,170,130],[Z[4],.82,.3,130,130]];
+let W,H,ST=[],SS=[];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;ST=Array.from({length:Math.min(300,W*H/5000|0)},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.3+.3,p:Math.random()*6.3,s:.6+Math.random()*1.6,d:.03+Math.random()*.1}))}
+function frame(t){
+  const lt=document.documentElement.dataset.theme==="light",rgb=lt?"80,60,190":"255,255,255";
+  c2.clearRect(0,0,W,H);t/=1000;
+  ST.forEach(s=>{if(!RM)s.x=(s.x+s.d)%W;c2.fillStyle=`rgba(${rgb},${.35+.55*Math.sin(t*s.s+s.p)**2})`;c2.beginPath();c2.arc(s.x,s.y,s.r,0,6.3);c2.fill()});
+  const k=Math.min(1,W/900);
+  BGC.forEach(([pl,fx,fy,w,h])=>{const ox=fx*W,oy=fy*H,P=([x,y])=>[ox+x/100*w*k,oy+y/100*h*k];c2.strokeStyle=`rgba(${rgb},${.14+.08*Math.sin(t+fx*9)})`;c2.lineWidth=1;
+    pl.forEach(l=>{c2.beginPath();l.forEach((p,i)=>{const[X,Y]=P(p);i?c2.lineTo(X,Y):c2.moveTo(X,Y)});c2.stroke();
+      l.forEach((p,i)=>{const[X,Y]=P(p);c2.fillStyle=`rgba(${rgb},${.7+.3*Math.sin(t*2+i)})`;c2.shadowColor=lt?"#6d4ae0":"#fff";c2.shadowBlur=8;c2.beginPath();c2.arc(X,Y,2.2,0,6.3);c2.fill();c2.shadowBlur=0})})});
+  if(RM)return;
+  if(Math.random()<.006)SS.push({x:Math.random()*W,y:Math.random()*H*.5,vx:7+Math.random()*5,vy:3+Math.random()*3,l:1});
+  SS=SS.filter(s=>s.l>0);
+  SS.forEach(s=>{const g=c2.createLinearGradient(s.x,s.y,s.x-s.vx*8,s.y-s.vy*8);g.addColorStop(0,`rgba(${rgb},${s.l})`);g.addColorStop(1,`rgba(${rgb},0)`);c2.strokeStyle=g;c2.lineWidth=2;c2.beginPath();c2.moveTo(s.x,s.y);c2.lineTo(s.x-s.vx*8,s.y-s.vy*8);c2.stroke();s.x+=s.vx;s.y+=s.vy;s.l-=.018});
+  requestAnimationFrame(frame);
+}
+rs();addEventListener("resize",rs);requestAnimationFrame(frame);
+
+/* ---------- Hiệu ứng & tương tác ---------- */
+function pinfo(k){const b=B[k],i=b.i,t=k==0?S[i][3]:k==1?S[i][4]:PE[b.n][i%4];
+  const as=aspects(B).filter(a=>a.a===b||a.b===b).slice(0,3).map(a=>`${a.t} ${(a.a===b?a.b:a.a).n}`).join(", ");
+  $("pinfo").innerHTML=`<b>${b.s} ${b.n} – ${fmt(b.l)}</b><br>Nhà ${b.h}: ${HS[b.h-1]}. ${t}${as?`<br><span class="note">Góc hợp: ${as}.</span>`:""}`;
+  document.querySelectorAll(".pk").forEach(g=>g.classList.toggle("on",g.dataset.k==k))}
+$("wheel").onclick=e=>{const g=e.target.closest(".pk");if(g)pinfo(+g.dataset.k)};
+function sgn(i){const c=ELC[S[i][2]];$("mc").innerHTML=`<div style="text-align:center"><div style="font-size:3rem;color:${c}">${S[i][1]}</div><h2>${S[i][0]} · ${S[i][2]}</h2><div class="con">${conSVG(i)}</div></div><h3>Bản chất</h3><p>${S[i][3]}</p><h3>Nội tâm</h3><p>${S[i][4]}</p><h3>Ấn tượng bên ngoài</h3><p>${S[i][5]}</p><h3>Nguyên tố ${S[i][2]}</h3><p>${EL[S[i][2]]} ${EE[S[i][2]][0]}</p>`;$("modal").classList.remove("hide")}
+$("big").onclick=e=>{const d=e.target.closest(".sgn");if(d)sgn(+d.dataset.i)};
+$("big").onkeydown=e=>{if(e.key==="Enter"){const d=e.target.closest(".sgn");if(d)sgn(+d.dataset.i)}};
+$("modal").onclick=e=>{if(e.target.id==="modal"||e.target.id==="mx")$("modal").classList.add("hide")};
+addEventListener("keydown",e=>{if(e.key==="Escape")$("modal").classList.add("hide")});
+function acc(el){[...el.querySelectorAll("h3")].forEach((h,n)=>{const w=document.createElement("div"),inn=document.createElement("div");w.className="acc"+(n?"":" open");w.appendChild(inn);let s=h.nextSibling;while(s&&s.tagName!=="H3"){const nx=s.nextSibling;inn.appendChild(s);s=nx}h.after(w);h.classList.add("tg");if(n)h.classList.add("shut");h.onclick=()=>{w.classList.toggle("open");h.classList.toggle("shut",!w.classList.contains("open"))}})}
+const runGo=$("go").onclick,MS=["Xác định vị trí các hành tinh…","Dựng bánh xe hoàng đạo…","Giải mã ý nghĩa các vì sao…"];
+const meteor=n=>{for(let i=0;i<n;i++)SS.push({x:Math.random()*W*.6,y:Math.random()*H*.4,vx:9+Math.random()*5,vy:4+Math.random()*3,l:1})};
+$("go").onclick=()=>{
+  if(!$("date").value||!$("time").value){runGo();return}
+  const btn=$("go");btn.disabled=true;$("out").classList.add("hide");$("load").classList.remove("hide");
+  let n=0;$("lm").textContent=MS[0];const iv=setInterval(()=>{$("lm").textContent=MS[++n%3]},600);meteor(4);
+  setTimeout(()=>{clearInterval(iv);$("load").classList.add("hide");btn.disabled=false;runGo();
+    if(!$("err").textContent){$("pinfo").textContent="👆 Chạm vào một hành tinh trên bánh xe để xem chi tiết.";acc($("more"));acc($("bonus"));
+      const w=$("wheel");w.classList.remove("spin");void w.getBoundingClientRect();w.classList.add("spin");meteor(8)}},1900)};
+</script>
+</body>
+</html>
